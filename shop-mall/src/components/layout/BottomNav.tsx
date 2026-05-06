@@ -27,12 +27,10 @@ export default function BottomNav() {
               to={item.path}
               className="relative flex flex-col items-center justify-center w-16 h-full"
             >
-              <div className="relative inline-flex">
-                <Icon size={22} strokeWidth={isActive ? 2.5 : 1.5} className={isActive ? 'text-gray-900' : 'text-gray-400'} />
+              <div className="relative">
+                <Icon size={24} strokeWidth={isActive ? 2.5 : 1.5} className={isActive ? 'text-gray-900' : 'text-gray-400'} />
                 {item.badge && item.badge > 0 && (
-                  <span className="absolute -top-1.5 -right-2 w-4 h-4 bg-red-500 text-white text-[9px] rounded-full flex items-center justify-center font-bold leading-none">
-                    {item.badge > 99 ? '99+' : item.badge}
-                  </span>
+                  <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-red-500 rounded-full border border-white" />
                 )}
               </div>
               <span className={cn(
