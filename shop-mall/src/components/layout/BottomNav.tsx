@@ -33,9 +33,9 @@ export default function BottomNav() {
                   'transition-colors duration-200',
                   isActive ? 'text-red-500' : 'text-gray-400'
                 )} />
-                {item.badge && item.badge > 0 && (
+                {item.badge !== undefined && (
                   <span className="absolute -top-1.5 -right-2.5 min-w-[18px] h-[18px] px-[4px] bg-red-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center leading-none border border-white">
-                    {item.badge > 99 ? '99+' : item.badge}
+                    {item.badge! > 99 ? '99+' : item.badge}
                   </span>
                 )}
               </div>
