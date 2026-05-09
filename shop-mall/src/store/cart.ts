@@ -3,16 +3,23 @@ import type { CartItem, Product } from '../types'
 
 interface CartState {
   items: CartItem[]
+  totalItems: number
+  totalPrice: number
   addToCart: (product: Product, quantity?: number) => void
   removeFromCart: (productId: string) => void
   updateQuantity: (productId: string, quantity: number) => void
   clearCart: () => void
-  totalItems: number
-  totalPrice: number
 }
+
+const calcTotals = (items: CartItem[]) => ({
+  totalItems: items.reduce((sum, item) => sum + item.quantity, 0),
+  totalPrice: items.reduce((sum, item) => sum + item.price * item.quantity, 0),
+})
 
 export const useCartStore = create<CartState>((set, get) => ({
   items: [],
+  totalItems: 0,
+  totalPrice: 0,
   addToCart: (product, quantity = 1) => {
     const items = [...get().items]
     const existing = items.find(item => item.id === product.id)
@@ -21,27 +28,21 @@ export const useCartStore = create<CartState>((set, get) => ({
     } else {
       items.push({ ...product, quantity })
     }
-    set({ items })
+    set({ items, ...calcTotals(items) })
   },
   removeFromCart: (productId) => {
-    set({ items: get().items.filter(item => item.id !== productId) })
+    const items = get().items.filter(item => item.id !== productId)
+    set({ items, ...calcTotals(items) })
   },
   updateQuantity: (productId, quantity) => {
     if (quantity <= 0) {
       get().removeFromCart(productId)
       return
     }
-    set({
-      items: get().items.map(item =>
-        item.id === productId ? { ...item, quantity } : item
-      ),
-    })
+    const items = get().items.map(item =>
+      item.id === productId ? { ...item, quantity } : item
+    )
+    set({ items, ...calcTotals(items) })
   },
-  clearCart: () => set({ items: [] }),
-  get totalItems() {
-    return get().items.reduce((sum, item) => sum + item.quantity, 0)
-  },
-  get totalPrice() {
-    return get().items.reduce((sum, item) => sum + item.price * item.quantity, 0)
-  },
+  clearCart: () => set({ items: [], totalItems: 0, totalPrice: 0 }),
 }))
