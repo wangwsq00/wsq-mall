@@ -85,18 +85,20 @@ export default function Header() {
               <Search size={20} />
             </button>
 
-            <Link to="/cart" className="relative p-2 hover:bg-gray-100 rounded-full">
-              <ShoppingCart size={22} />
-              {totalItems > 0 && (
-                <span className="absolute -top-0.5 -right-0.5 w-5 h-5 bg-gray-900 text-white text-xs rounded-full flex items-center justify-center font-medium">
-                  {totalItems}
-                </span>
-              )}
-            </Link>
+            <div className="hidden lg:flex items-center gap-2">
+              <Link to="/cart" className="relative p-2 hover:bg-gray-100 rounded-full">
+                <ShoppingCart size={22} />
+                {totalItems > 0 && (
+                  <span className="absolute -top-0.5 -right-0.5 w-5 h-5 bg-gray-900 text-white text-xs rounded-full flex items-center justify-center font-medium">
+                    {totalItems}
+                  </span>
+                )}
+              </Link>
 
-            <Link to="/user" className="p-2 hover:bg-gray-100 rounded-full">
-              <User size={22} />
-            </Link>
+              <Link to="/user" className="p-2 hover:bg-gray-100 rounded-full">
+                <User size={22} />
+              </Link>
+            </div>
           </div>
         </div>
       </div>
