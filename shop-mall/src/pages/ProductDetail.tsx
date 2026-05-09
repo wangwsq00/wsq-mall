@@ -21,7 +21,7 @@ export default function ProductDetailPage() {
 
   if (!product) {
     return (
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center bg-gray-50 min-h-screen rounded-t-3xl">
         <p className="text-gray-400 text-lg mb-4">商品不存在</p>
         <button
           onClick={() => navigate('/products')}
@@ -43,7 +43,7 @@ export default function ProductDetailPage() {
   const prevImage = () => setCurrentImage(prev => (prev - 1 + allImages.length) % allImages.length)
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-10">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-10 bg-gray-50 min-h-screen rounded-t-3xl">
       <button
         onClick={() => navigate(-1)}
         className="flex items-center gap-1 text-sm text-gray-500 hover:text-gray-900 mb-6 transition-colors"

@@ -22,7 +22,7 @@ export default function UserPage() {
   const [activeTab, setActiveTab] = useState<TabType>('orders')
 
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-10">
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-10 bg-gray-50 min-h-screen rounded-t-3xl">
       <div className="flex items-center gap-4 mb-8">
         <div className="w-16 h-16 rounded-full bg-gray-200 overflow-hidden">
           <img src={user.avatar} alt={user.name} className="w-full h-full object-cover" />
